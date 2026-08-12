@@ -1,0 +1,34 @@
+[
+    {
+        "nama" : "Fatih",
+        "umur" : 17,
+        "nisn" : "00964565999",
+        "lulus": false,
+        "hobi" : [
+            "coding",
+            "gaming"
+            ],  
+
+        "guruPembimbing" : {
+            "pembimbing1" : "Way",
+            "pembimbing2" : "Bj"
+        }
+    },
+
+    {
+        "nama" : "Amin",
+        "umur" : 17,
+        "nisn" : "00964565999",
+        "lulus": false,
+        "hobi" : [
+            "coding",
+            "gaming"
+            ],  
+
+        "guruPembimbing" : {
+            "pembimbing1" : "Nico",
+            "pembimbing2" : "Eka"
+        }
+    }
+
+]
