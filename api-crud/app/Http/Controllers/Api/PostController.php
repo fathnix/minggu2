@@ -27,8 +27,6 @@ class PostController extends Controller
             'content' => 'required'
         ]);
 
-        // Tadi kodenya berhenti di validate aja, data barunya belum disuruh simpan!
-        // Ini baris yang bikin fungsinya jalan:
         $post = Post::create($request->all());
         
         return response()->json($post, 201);
