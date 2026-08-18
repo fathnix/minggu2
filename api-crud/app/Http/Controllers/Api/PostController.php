@@ -7,6 +7,8 @@ use App\Models\Post;
 use Illuminate\Cache\Events\CacheFlushing;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\title;
+
 class PostController extends Controller
 {
     /**
@@ -33,7 +35,72 @@ class PostController extends Controller
         return response()->json($post, 201);
     }
 
-    public function show($id){
+    public function show($id)
+    {
+        $post = Post::find($id);
         
+        if(!$post){
+            return response()->json([
+                "succes" => false,
+                "message" => "Data tidak ditemukan",
+                "data" => null
+            ], 404);
+        }
+
+        return response()->json([
+            "succes" => true,
+            "message" => "Data berhasil ditemukan",
+            "data" => $post
+        ], 200);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Post::find($id);
+
+        if (!$post){
+            return response()->json([
+                "succes" => false,
+                "message" => "Data tidak ditemukan",
+                "data" => null
+            ], 404);
+        }
+
+        $request->validate([
+            "title" => 'required|string|max:255',
+            "content" => "required|string|max:255"
+        ]);
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+        return response()->json([
+            'succes' => true,
+            'message' => "Data berhasil di ubah",
+            'Data' => $post
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+
+        if (!$post){
+            return response()->json([
+                "succes" => false,
+                "message" => "Data tidak ditemukan",
+                "data" => null
+            ], 404);
+        }
+
+        $post->delete();
+
+        return response()->json([
+            'succes' => true,
+            'message' => 'Data berhasil di hapus',
+            'data' => null
+        ]);
     }
 }
