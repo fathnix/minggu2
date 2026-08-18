@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Cache\Events\CacheFlushing;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -30,5 +31,9 @@ class PostController extends Controller
         $post = Post::create($request->all());
         
         return response()->json($post, 201);
+    }
+
+    public function show($id){
+        
     }
 }
